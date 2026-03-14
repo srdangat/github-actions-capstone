@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+
+env:
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/node-app
+
 jobs:
 
   build-test:
@@ -32,7 +36,7 @@ jobs:
     needs: [build-test, generate-sha]
     uses: ./.github/workflows/reusable-docker.yml
     with:
-      image_name: ${{ secrets.DOCKERHUB_USERNAME }}/node-app
+      image_name: ${{ env.IMAGE_NAME }} 
       tag: sha-${{ needs.generate-sha.outputs.short_sha }}
     secrets:
       docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
