@@ -56,6 +56,22 @@ jobs:
             ${{ vars.DOCKER_USERNAME }}/${{ inputs.image_name }}:${{ inputs.tag }}
             ${{ vars.DOCKER_USERNAME }}/${{ inputs.image_name }}:latest
 
+      - name: Run Trivy vulnerability scan
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: ${{ vars.DOCKER_USERNAME }}/${{ inputs.image_name }}:${{ inputs.tag }}
+          format: table
+          output: trivy-report.json
+          severity: CRITICAL
+          exit-code: 1
+
+      - name: Upload Trivy scan report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-scan-report
+          path: trivy-report.json
+
       - name: Set image_url output
         id: set-image-url
         run: |
