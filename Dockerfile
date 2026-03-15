@@ -3,7 +3,7 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Update OS packages (fix zlib vulnerability)
+# Update OS packages (fix zlibvulnerability)
 RUN apk update && apk upgrade
 
 COPY package*.json ./
