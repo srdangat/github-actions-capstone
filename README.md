@@ -1,4 +1,15 @@
 
+
+   # End-to-End CI/CD Pipeline with GitHub Actions
+
+## 📌 Project Overview
+
+This repository demonstrates a **DevSecOps CI/CD pipeline** for a **Node.js Express** application. It focuses on the "Shift-Left" security, ensuring that security and quality checks are integrated deep into the automated workflow.
+
+The application serves a simple `/health` endpoint, while the infrastructure provides a robust pipeline that automates everything from unit testing to security-hardened container deployments.
+
+---
+
 <p align="center">
   <a href="https://github.com/srdangat/github-actions-capstone/actions/workflows/main-pipeline.yml">
     <img src="https://github.com/srdangat/github-actions-capstone/actions/workflows/main-pipeline.yml/badge.svg" alt="Main Pipeline Status">
@@ -14,14 +25,6 @@
   </a>
 </p>
 
-
-## 📌 Project Overview
-
-This repository demonstrates a **DevSecOps CI/CD pipeline** for a **Node.js Express** application. It focuses on the "Shift-Left" security, ensuring that security and quality checks are integrated deep into the automated workflow.
-
-The application serves a simple `/health` endpoint, while the infrastructure provides a robust pipeline that automates everything from unit testing to security-hardened container deployments.
-
----
 
 ## 🔄 Pipeline Workflows
 
@@ -48,6 +51,21 @@ The application serves a simple `/health` endpoint, while the infrastructure pro
 - **Testing**: Node.js Test Runner & Smoke Tests
 
 ---
+
+## PR Pipeline
+   ![image](images/task4.png)
+
+
+## Main Branch Pipeline
+
+![image](images/task5.png)
+
+
+## Scheduled Health Check
+
+![image](images/task6.png)
+
+
 
 ## 🚀 Getting Started
 
