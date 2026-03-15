@@ -1,14 +1,12 @@
 # Stage 1: Build
-FROM node:20-alpine AS builder
-# Upgrade system packages to fix critical CVEs (zlib, etc.)
+FROM node:20.8.1-alpine AS builder
 RUN apk update && apk upgrade --no-cache
 WORKDIR /app
-COPY package*.json ./
+COPY package-lock.json package.json ./
 RUN npm ci --only=production
 
 # Stage 2: Runtime
-FROM node:20-alpine AS runtime
-# Upgrade system packages in runtime too
+FROM node:20.8.1-alpine AS runtime
 RUN apk update && apk upgrade --no-cache
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 WORKDIR /app
