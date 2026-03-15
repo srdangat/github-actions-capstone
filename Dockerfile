@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM node:20-alpine AS builder
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
@@ -12,7 +12,7 @@ COPY package*.json ./
 RUN npm ci --omit=dev
 
 # Stage 2: Runtime
-FROM node:20-alpine AS runtime
+FROM node:18-alpine AS runtime
 
 # Update OS packages again
 RUN apk update && apk upgrade
