@@ -1,12 +1,12 @@
-FROM node:22-alpine3.24 AS builder
+FROM node:22-bullseye-slim AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci --omit=dev
 COPY server.js ./
 
-FROM node:22-alpine3.24
-RUN apk add --no-cache curl zlib=1.3.2-r0
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+FROM node:22-bullseye-slim
+RUN apt-get update && apt-get upgrade -y && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN addgroup --system appgroup && adduser --system appuser --ingroup appgroup
 WORKDIR /app
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/server.js ./
