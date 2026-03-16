@@ -5,10 +5,14 @@ RUN npm ci --omit=dev
 COPY server.js ./
 
 
-FROM gcr.io/distroless/nodejs:22
+FROM node:22-alpine
+RUN apk add --no-cache curl
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 WORKDIR /app
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/server.js ./
-EXPOSE 3000
+RUN chown -R appuser:appgroup /app
+USER appuser
 ENV NODE_ENV=production
-CMD ["server.js"]
+EXPOSE 3000
+CMD ["node", "server.js"]
