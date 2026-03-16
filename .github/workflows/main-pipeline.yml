@@ -53,6 +53,7 @@ jobs:
         with:
           image-ref: ${{ vars.DOCKER_USERNAME }}/node-app:sha-${{ needs.generate-sha.outputs.short_sha }}
           format: table
+          output: trivy-report.txt
           severity: CRITICAL,HIGH
           exit-code: 1
           trivy-ignores: ${{ github.workspace }}/.trivyignore
