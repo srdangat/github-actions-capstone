@@ -8,13 +8,18 @@
     "test": "node test.js"
   },
   "dependencies": {
+    "cross-spawn": "^7.0.5",
     "express": "^5.2.1",
-    "cross-spawn": "7.0.5",
-    "glob": "11.1.0",
-    "minimatch": "10.2.1",
-    "tar": "7.5.11"
+    "glob": "^11.1.0",
+    "minimatch": "^10.2.3",
+    "tar": "^7.5.11"
   },
-  "keywords": ["nodejs","express","docker","ci-cd"],
+  "keywords": [
+    "nodejs",
+    "express",
+    "docker",
+    "ci-cd"
+  ],
   "author": "Sanket",
   "license": "MIT",
   "engines": {
