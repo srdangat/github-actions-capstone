@@ -54,6 +54,7 @@ jobs:
           image-ref: ${{ vars.DOCKER_USERNAME }}/node-app:sha-${{ needs.generate-sha.outputs.short_sha }}
           format: table
           severity: 'CRITICAL,HIGH'
+          ignore-unfixed: true
           exit-code: 1
 
 

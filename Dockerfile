@@ -6,7 +6,7 @@ COPY server.js ./
 
 FROM node:22-bookworm-slim
 RUN apt-get update && \
-    apt-get upgrade -y --no-install-recommends && \
+    apt-get upgrade -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
