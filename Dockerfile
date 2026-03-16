@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM node:20-alpine3.21 AS builder
+FROM node:22-alpine AS builder
 
 # Set working directory
 WORKDIR /app
@@ -14,7 +14,7 @@ RUN npm ci
 COPY server.js ./
 
 # Stage 2: Production Runtime
-FROM node:20-alpine3.21
+FROM node:22-alpine
 
 # Update OS packages and install curl for health checks
 RUN apk update && apk upgrade --no-cache && apk add --no-cache curl
