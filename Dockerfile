@@ -8,7 +8,8 @@ FROM node:22-bookworm-slim
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /usr/local/lib/node_modules /usr/local/bin/npm /usr/local/bin/npx /opt/yarn* /usr/local/bin/yarn /usr/local/bin/yarnpkg
 
 RUN addgroup --system appgroup && adduser --system appuser --ingroup appgroup
 
