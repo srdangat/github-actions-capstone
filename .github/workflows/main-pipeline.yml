@@ -56,7 +56,7 @@ jobs:
           # output: trivy-report.txt
           severity: CRITICAL
           exit-code: 1
-          trivyignores: ${{ github.workspace }}/.trivyignore
+          # trivyignores: ${{ github.workspace }}/.trivyignore
 
       # - name: Upload Trivy scan report
       #   if: always()
