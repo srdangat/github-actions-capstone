@@ -1,6 +1,6 @@
  
 
-   # End-to-End CI/CD Pipeline with GitHub Actions 
+   # DevSecOps CI/CD Pipeline Pipeline with GitHub Actions 
 
 ## 📌 Project Overview
 
@@ -25,20 +25,15 @@ The application serves a simple `/health` endpoint, while the infrastructure pro
   </a>
 </p>
 
+             
+---                    
+                    
+                    
+ # Pipeline Diagram
 
-## 🔄 Pipeline Workflows
+![image](images/devsecops.png)
 
-### 1. Pull Request Flow (Continuous Integration)
-**Trigger**: When a PR is opened or updated targeting the `main` branch.
-> PR Opened → **Build & Test** → PR Checks Pass
 
-### 2. Main Branch Flow (Continuous Deployment)
-**Trigger**: When code is merged into the `main` branch.
-> Merge to Main → **Build & Test** → **Docker Build & Push** → **Trivy Security Scan** → **Deploy**
-
-### 3. Scheduled Monitoring
-**Trigger**: Every 12 hours via GitHub Actions Cron.
-> Every 12 Hours → **Health Check**
 
 ---
 
@@ -65,6 +60,10 @@ The application serves a simple `/health` endpoint, while the infrastructure pro
 
 ![image](images/task6.png)
 
+
+## Dependency Review
+
+![image](images/depsreview.png)
 
 
 ## 🚀 Getting Started
@@ -106,13 +105,3 @@ This project uses multi-stage builds and non-root user isolation for security.
    ```bash
    curl http://localhost:3000/health
    ```
-
----
-
-### 🔗 3. GitHub Actions CI/CD
-
-The pipeline is fully automated and triggered by Git events:
-
-- **Continuous Integration (PR)**: Runs on every Pull Request to `main`. It validates builds and tests.
-- **Continuous Deployment (Push)**: Runs when code is merged into `main`. It builds the Docker image, performs a **Trivy Security Scan**, and pushes to Docker Hub.
-- **Scheduled Checks**: Every 12 hours, a monitoring job runs to ensure the production endpoint is healthy.
