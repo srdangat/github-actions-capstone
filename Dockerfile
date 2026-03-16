@@ -1,12 +1,16 @@
-FROM node:22-bullseye-slim AS builder
+FROM node:22.17.1-bullseye-slim AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci --omit=dev
 COPY server.js ./
 
-FROM node:22-bullseye-slim
-RUN apt-get update && apt-get upgrade -y && apt-get clean && rm -rf /var/lib/apt/lists/*
-RUN addgroup --system appgroup && adduser --system appuser --ingroup appgroup
+FROM node:22.17.1-bullseye-slim
+RUN apt-get update && \
+    apt-get upgrade -y --no-install-recommends && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+RUN addgroup --system appgroup && \
+    adduser --system appuser --ingroup appgroup
 WORKDIR /app
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/server.js ./
