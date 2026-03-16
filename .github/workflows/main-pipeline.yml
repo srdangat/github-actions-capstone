@@ -53,17 +53,17 @@ jobs:
         with:
           image-ref: ${{ vars.DOCKER_USERNAME }}/node-app:sha-${{ needs.generate-sha.outputs.short_sha }}
           format: table
-          output: trivy-report.txt
+          # output: trivy-report.txt
           severity: CRITICAL
           exit-code: 1
           trivyignores: ${{ github.workspace }}/.trivyignore
 
-      - name: Upload Trivy scan report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: trivy-scan-report
-          path: trivy-report.txt
+      # - name: Upload Trivy scan report
+      #   if: always()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: trivy-scan-report
+      #     path: trivy-report.txt
 
 
   deploy:
