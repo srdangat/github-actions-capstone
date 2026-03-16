@@ -1,24 +1,24 @@
 # Stage 1: Build
 FROM node:20-alpine3.21 AS builder
 
-# Upgrade Alpine packages to reduce OS vulnerabilities
+# Upgrade Alpine packages
 RUN apk update && apk upgrade --no-cache
 
 WORKDIR /app
 
-# Copy package files
+# Copy package files and lockfile
 COPY package*.json ./
 
-# Install dev & prod dependencies (resolutions will be applied)
+# Install all dependencies (including dev)
 RUN npm ci
 
-# Copy application code
+# Copy app code
 COPY server.js ./
 
 # Stage 2: Runtime
 FROM node:20-alpine3.21
 
-# Upgrade Alpine packages in runtime stage
+# Upgrade runtime packages
 RUN apk update && apk upgrade --no-cache
 
 # Create non-root user
@@ -26,16 +26,25 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 WORKDIR /app
 
-# Copy only necessary files from builder
+# Copy node_modules and app code from builder
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/server.js ./ 
 
-# Set permissions
+# Set ownership
 RUN chown -R appuser:appgroup /app
 
-# Switch to non-root user
+# Use non-root user
 USER appuser
 
+# Set production environment
+ENV NODE_ENV=production
+
+# Expose port
 EXPOSE 3000
 
+# Optional health check
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s \
+  CMD curl -f http://localhost:3000/health || exit 1
+
+# Start the app
 CMD ["node", "server.js"]

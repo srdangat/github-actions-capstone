@@ -4,35 +4,20 @@
   "description": "Node.js Express application with health endpoint",
   "main": "server.js",
   "scripts": {
-    "preinstall": "npx npm-force-resolutions",
     "start": "node server.js",
     "test": "node test.js"
   },
   "dependencies": {
-    "cross-spawn": "^7.0.5",
     "express": "^5.2.1",
-    "glob": "^11.1.0",
-    "minimatch": "^10.2.1",
-    "tar": "^7.5.3"
+    "cross-spawn": "7.0.5",
+    "glob": "11.1.0",
+    "minimatch": "10.2.1",
+    "tar": "7.5.11"
   },
-  "resolutions": {
-    "cross-spawn": "^7.0.5",
-    "glob": "^11.1.0",
-    "minimatch": "^10.2.1",
-    "tar": "^7.5.3"
-  },
-  "keywords": [
-    "nodejs",
-    "express",
-    "docker",
-    "ci-cd"
-  ],
+  "keywords": ["nodejs","express","docker","ci-cd"],
   "author": "Sanket",
   "license": "MIT",
   "engines": {
     "node": ">=18"
-  },
-  "devDependencies": {
-    "npm-force-resolutions": "^0.0.10"
   }
 }
