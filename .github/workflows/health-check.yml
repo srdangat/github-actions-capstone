@@ -1,9 +1,9 @@
 name: Scheduled Health Check
 
 on:
-  schedule:
+  #schedule:
     # Runs every 12 hours
-    - cron: '0 */12 * * *'
+   # - cron: '0 */12 * * *'
   workflow_dispatch:
 
 env:
